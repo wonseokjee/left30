@@ -9,8 +9,9 @@ export class AppService {
     return 'Hello World!';
   }
 
-  @Cron('0 */5 * * * *')
+  @Cron('0 */15 * * * *')
   handleCron() {
-    this.logger.debug('Called when the current minute is 5');
+    this.logger.debug('Called when the current minute is 15');
+    return 'Called when the current minute is 15';
   }
 }
