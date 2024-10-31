@@ -10,8 +10,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class ActionsService {
   constructor(
-    @Inject('TOPIC_REPOSITORY')
-    private topicRepository: Repository<Action>,
+    @Inject('ACTION_REPOSITORY')
+    private actionRepository: Repository<Action>,
   ) {}
 
   // async getAll(): Promise<SimpleTopicDto[]> {
