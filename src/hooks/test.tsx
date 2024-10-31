@@ -9,8 +9,19 @@ export default function Test() {
     console.log(json);
     setTest(json);
   };
+
   useEffect(() => {
     searchAuction();
+
+    const eventSource = new EventSource('http://127.0.0.1:5000/test/all');
+    // SSE 이벤트 수신
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log('Received data:', data);
+    };
+    return () => {
+      eventSource.close();
+    };
   }, []);
   return (
     <div>
