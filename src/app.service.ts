@@ -10,6 +10,7 @@ class Users {
 export class AppService {
   private readonly logger = new Logger(AppService.name);
 
+  private time: string = '';
   //date String test
   getHello(): string {
     const date = new Date().toLocaleString();
@@ -17,22 +18,22 @@ export class AppService {
   }
 
   //sse로 데이터 뿌려주기
-  @Cron('0 */15 * * * *')
+  @Cron('0 */1 * * * *')
   checkCron() {
-    const date = new Date();
+    const date = new Date().toString();
     // console.log(date.toString());
-    this.logger.debug('Called when the current minute is 15 ');
+    this.time = date;
+    this.logger.debug('Called when the current minute is 1 ');
+    // this.sseCron();
     return 'Called when the current minute is 15';
   }
 
-  @Cron('0 */1 * * * *')
+  @Cron('10 * * * * *')
   sseCron(): Observable<any> {
-    const date = new Date().toString();
+    // const date = new Date().toString();
+    const cronTime = this.time;
+    this.logger.debug('Called when the current second is 3 ');
 
-    this.logger.debug('Called when the current minute is 10 ');
-    console.log(`Called ${date}`);
-    console.log(of({ data: { date } }));
-
-    return of({ data: { date } });
+    return of({ data: { cronTime } });
   }
 }

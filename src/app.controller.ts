@@ -1,6 +1,7 @@
 import { Controller, Get, Sse } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { interval, map } from 'rxjs';
 
 @Controller()
 export class AppController {
@@ -18,7 +19,6 @@ export class AppController {
 
   @Sse('/test/all')
   sseCron(): Observable<any> {
-    console.log('sseController');
     return this.appService.sseCron();
     // return interval(1000).pipe(map((_) => ({ data: { hello: 'world' } })));
   }
