@@ -11,15 +11,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  @Get()
-  checkCron(): string {
-    return this.appService.checkCron();
-  }
-
-  @Sse('/test/all')
-  sseCron(): Observable<any> {
-    return this.appService.sseCron();
-    // return interval(1000).pipe(map((_) => ({ data: { hello: 'world' } })));
-  }
 }
