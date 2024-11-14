@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useRef } from 'react';
 
-interface IUseInterval {
+interface UseInterval {
   (callback: () => void, delay: number): void;
 }
 
-const useInterval: IUseInterval = (callback, delay) => {
+const useInterval: UseInterval = (callback, delay) => {
   const savedCallback = useRef<(() => void) | null>(null);
   // After every render, save the latest callback into our ref.
   useEffect(() => {
